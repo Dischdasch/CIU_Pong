@@ -58,6 +58,8 @@ void setup(){
 
 void draw(){  
   background(128);
+  if(jugador1.count < 5 && jugador2.count <5)
+  {
     if (up ==true && posY_2 > 27)
     {
       posY_2 -= Math.abs(movY);
@@ -75,8 +77,27 @@ void draw(){
       posY_1 += Math.abs(movY);
     }
     rectMode(CORNER);
-  jugador1.drawJ(10, posY_1, 20, 50);
-  jugador2.drawJ(width-10, posY_2, 20, 50);
+  if(jugador1.count > jugador2.count)
+  {
+    fill(50,205,50);
+    jugador1.drawJ(10, posY_1, 20, 50);
+    fill(178,34,34);
+    jugador2.drawJ(width-10, posY_2, 20, 50);
+  }
+  else if(jugador2.count > jugador1.count)
+  {
+    fill(178,34,34);
+    jugador1.drawJ(10, posY_1, 20, 50);
+    fill(50,205,50);
+    jugador2.drawJ(width-10, posY_2, 20, 50);
+  }
+  else{
+    fill(0);
+    jugador1.drawJ(10, posY_1, 20, 50);
+    jugador2.drawJ(width-10, posY_2, 20, 50);
+  }
+  
+  fill(255);
   balon.drawB(balonX, balonY, 30, 30);
   balonX += movX;
   balonY += movY;
@@ -111,6 +132,21 @@ void draw(){
     textSize(20);
     text(jugador1.count, 30, 380);
     text(jugador2.count, width-35, 380);
+  }
+  else{
+    if (jugador1.count >=5){
+      textSize(45);
+      text("JUGADOR 1 GANA!", 20, 170);
+      textSize(30);
+      text(jugador1.count + ":" + jugador2.count, 190, 200);
+    }
+    else{
+      textSize(45);
+      text("JUGADOR 2 GANA!", 20, 170);
+      textSize(30);
+      text(jugador1.count + ":" + jugador2.count, 190, 200);
+    }
+  }
 }
 
 void keyPressed(){
