@@ -12,4 +12,4 @@ Desiciones:
  
  Extras:
  El bate del jugador líder es de color verde. La paleta del otro es de color rojo.
- Cuando un jugador ha alcanzado los 5 puntos, hay una pantalla final que muestra el ganador y la puntuación.
+ Cuando un jugador ha alcanzado los 3 puntos, hay una pantalla final que muestra el ganador y la puntuación.
