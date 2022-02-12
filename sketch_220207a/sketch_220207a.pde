@@ -58,8 +58,9 @@ void setup(){
 
 void draw(){  
   background(128);
-  if(jugador1.count < 5 && jugador2.count <5)
+  if(jugador1.count < 5 && jugador2.count <5) //check if the game is finished
   {
+    //Check if rackets should move
     if (up ==true && posY_2 > 27)
     {
       posY_2 -= Math.abs(movY);
@@ -77,6 +78,8 @@ void draw(){
       posY_1 += Math.abs(movY);
     }
     rectMode(CORNER);
+   
+   //give green color to leader, red to loser
   if(jugador1.count > jugador2.count)
   {
     fill(50,205,50);
@@ -97,10 +100,13 @@ void draw(){
     jugador2.drawJ(width-10, posY_2, 20, 50);
   }
   
+  //draw ball
   fill(255);
   balon.drawB(balonX, balonY, 30, 30);
   balonX += movX;
   balonY += movY;
+  
+  //bounce
   if (balonX>=400 || balonX<=0)
   {
     movX=-movX;
@@ -121,6 +127,8 @@ void draw(){
     movX=-movX;
     thread ("Suena");  
   }
+  
+  //increment count of players
   if  (balonX>=400)
     {
       jugador1.count+=1;
@@ -129,11 +137,14 @@ void draw(){
     {
       jugador2.count+=1;
     }
+    
+    //display player counts
     textSize(20);
     text(jugador1.count, 30, 380);
     text(jugador2.count, width-35, 380);
   }
   else{
+    //Display winner and count
     if (jugador1.count >=5){
       textSize(45);
       text("JUGADOR 1 GANA!", 20, 170);
@@ -148,7 +159,7 @@ void draw(){
     }
   }
 }
-
+//helper function memorizing which keys were pressed
 void keyPressed(){
     if(key == CODED)
     {
@@ -171,6 +182,7 @@ void keyPressed(){
       }
 }
 
+//helper function memorizing which keys were released
 void keyReleased(){
     if(key == CODED)
     {
@@ -192,6 +204,8 @@ void keyReleased(){
         s = false;
       }
 }
+
+//helper function sound
 void Suena( ) {  
   sound.play();
 }
